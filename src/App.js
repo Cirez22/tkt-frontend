@@ -4,6 +4,7 @@ import Login from "./views/Login";
 import Register from "./views/Register";
 import HomeView from "./views/HomeView";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Panel from "./components/AdminPanel/Panel"
 
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
         <Route exact path="/register" component={Register} />
         
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/panel" component={Panel} />
+
 
       </BrowserRouter>
 

@@ -1,13 +1,13 @@
 import React from "react";
-import DashboardContent from "./DashboardContent";
 import Navbar from "./Navbar";
+import PanelContent from "./PanelContent"
 
 
 function Dashboard () {
     return ( 
         <div>
             <Navbar/>
-            <DashboardContent/>
+            <PanelContent/>
         </div>
     )
 }
