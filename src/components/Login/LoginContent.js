@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-
+import {AuthContext} from "../../context/AuthContext";
+import {useHistory} from "react-router";
 
 function LoginContent() {
     return (

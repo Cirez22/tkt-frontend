@@ -11,7 +11,7 @@ function DashboardContent() {
                             <div className="row" >
                                 <div className="col d-flex justify-content-center">
                                     <div className=" my-3 py-3">
-                                        <div className="shadow p-3 mb-5 bg-body rounded "  style={{ width: "18rem" }}>
+                                        <div className="card border-primary mb-3"  style={{ width: "18rem" }}>
                                             <div className="card-header border-primary mb-3">Titulo</div>
                                             <div className="card-body text-dark">
                                                 <h5 className="card-title">1.045.154</h5>
@@ -22,7 +22,7 @@ function DashboardContent() {
                                 </div>
                                 <div className="col d-flex justify-content-center">
                                     <div className="my-3 py-3">
-                                        <div className="shadow p-3 mb-5 bg-body rounded "  style={{ width: "18rem" }}>
+                                        <div className="card border-primary mb-3"  style={{ width: "18rem" }}>
                                             <div className="card-header border-primary mb-3">Titulo</div>
                                             <div className="card-body text-dark">
                                                 <h5 className="card-title">1.045.154</h5>
