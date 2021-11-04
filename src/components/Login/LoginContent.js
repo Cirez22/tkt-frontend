@@ -1,8 +1,35 @@
 import { Link } from "react-router-dom";
 import {AuthContext} from "../../context/AuthContext";
 import {useHistory} from "react-router";
+import { useContext, useState } from "react";
 
 function LoginContent() {
+
+    const history = useHistory();
+    const {loginUser} = useContext(AuthContext)
+    const [user,logUser] = useState ({
+        email:'',
+        password:'',
+        role:''
+    });
+
+    const handleChange = (event) => {
+        logUser ({
+            ...user,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const data = await loginUser(user)
+        console.log(data)
+        if (data.user.role === 'USER') {
+            history.pushState('/dashboard')
+        } else {
+            history.pushState('/adminpanel')
+        }
+    }
     return (
 
 
@@ -22,7 +49,15 @@ function LoginContent() {
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
-                                                    <input type="text" id="form3Example1c" className="form-control" placeholder="Email" />
+                                                    <input 
+                                                    value={user.email}
+                                                    name='email'
+                                                    type="text"
+                                                    id="form3Example1c" 
+                                                    className="form-control" 
+                                                    placeholder="Email" 
+                                                    onChange={handleChange}
+                                                    />
                                                 </div>
                                             </div>
 
@@ -30,7 +65,14 @@ function LoginContent() {
                                             <div className="d-flex flex-row align-items-center mb-4">
                                                 <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                 <div className="form-outline flex-fill mb-0">
-                                                    <input type="password" id="form3Example4c" className="form-control" placeholder="Password" />
+                                                    <input 
+                                                    type="password" 
+                                                    id="form3Example4c" 
+                                                    className="form-control" 
+                                                    placeholder="Password"
+                                                    onChange={handleChange}
+                                                    name="password"
+                                                    />
                                                 </div>
                                             </div>
 
@@ -42,8 +84,14 @@ function LoginContent() {
 
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 
+
+                                                {/* Cambiar con un onClick={handleSubmit} */}
                                             <Link to="/dashboard">
-                                                <button type="button" className="btn btn-primary btn-lg">Ingresa</button>
+                                                <button 
+                                                type="button" 
+                                                className="btn btn-primary btn-lg"
+                                                onClick={handleSubmit}
+                                                >Ingresa</button>
                                             </Link>
                                             </div>
 

@@ -1,6 +1,41 @@
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { AuthContext } from '../../context/AuthContext';
+import { useHistory } from 'react-router';
+
 function Register() {
+
+  const history = useHistory();
+  const {signUpUser} = useContext(AuthContext)
+  const [user,setUser] = useState({
+    email:'',
+    password:'',
+    role:''
+  })
+
+  const handleChange = (event) => {
+    setUser ({
+      ...user,[event.target.name]: event.target.value
+    })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    signUpUser(user)
+    if (user.role === 'USER') {
+      history.push('/dashboard');
+    } else {
+      history.push('panel')
+    }
+    setUser ({
+      email:'',
+      password:'',
+      role:''
+    })
+  }
+
+
   return (
     <section className="vh-100" style={{ backgroundColor: "eee" }}>
       <div className="container h-100">
@@ -11,14 +46,22 @@ function Register() {
                 <div className="row justify-content-center">
                   <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                    <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrarse</p>
 
                     <form className="mx-1 mx-md-4">
 
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
-                          <input type="text" id="form3Example1c" className="form-control" placeholder="Email" />
+                          <input 
+                          value={user.email}
+                          name='email'
+                          type="email" 
+                          id="form3Example1c" 
+                          className="form-control" 
+                          placeholder="Email"
+                          onChage={handleChange}
+                           />
                         </div>
                       </div>
 
@@ -26,31 +69,34 @@ function Register() {
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
-                          <input type="password" id="form3Example4c" className="form-control" placeholder="Password" />
+                          <input 
+                           value={user.password}
+                           name='password'
+                           type="password"
+                           id="form3Example4c" 
+                           className="form-control"
+                           placeholder="Password"
+                           onChange={handleChange}
+                          />
                         </div>
                       </div>
 
                       <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-key fa-lg me-3 fa-fw"></i>
-                        <div className="form-outline flex-fill mb-0">
-                          <input type="password" id="form3Example4cd" className="form-control" placeholder="Repeat Password" />
+                          <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+
+                          <select onChange={handleChange} name="role" className="form-select" aria-label="Default select example">
+                            {/* <option select=''>Role</option> */}
+                            <option value="USER">Usuario</option>
+                            <option value="ADMIN">Admin</option>
+                          </select>
                         </div>
-                      </div>
 
-                      <div className="form-check d-flex justify-content-center mb-5">
-                        <input
-                          className="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="form2Example3c"
-                        />
-                        <label className="form-check-label" for="form2Example3">
-                          I agree all statements in <a href="#!">Terms of service</a>
-                        </label>
-                      </div>
-
-                      <Link to="/panel">
-                        <button type="button" className="btn btn-primary btn-lg">Ingresa</button>
+                      <Link to="/panel" style={{marginLeft:"145px"}}>
+                        <button
+                        onClick={handleSubmit}
+                         type="button"
+                          className="btn btn-primary btn-lg"
+                          >Ingresar</button>
                       </Link>
 
                     </form>
