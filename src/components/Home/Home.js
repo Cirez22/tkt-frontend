@@ -19,7 +19,7 @@ function Home() {
                             <button type="button" className="btn btn-dark btn-lg px-4 me-md-2">Login</button>
                         </Link>
                         <Link to="/register">
-                            <button type="button" className="btn btn-dark btn-lg px-4 me-md-2">Register</button>
+                            <button type="button" className="btn btn-dark btn-lg px-4 me-md-2">Registrarse</button>
                         </Link>                    </div>
                 </div>
             </div>
