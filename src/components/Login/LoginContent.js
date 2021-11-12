@@ -23,7 +23,6 @@ function LoginContent() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = await loginUser(user)
-        console.log(data)
         if (data.user.role === 'USER') {
             history.pushState('/dashboard')
         } else {

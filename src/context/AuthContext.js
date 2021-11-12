@@ -24,7 +24,7 @@ const AuthProvider = ({children}) => {
   }
 
   const loginUser = async (user) => {
-
+      console.log(user, 123);
     const response = await axios.post(apiUrl +  '/auth/login', user);
     const { data } = response;
     localStorage.setItem('jwtreservespot', JSON.stringify({user: data.user, token: data.token}));

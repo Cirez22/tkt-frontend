@@ -16,7 +16,8 @@ function Register() {
 
   const handleChange = (event) => {
     setUser ({
-      ...user,[event.target.name]: event.target.value
+      ...user,
+      [event.target.name]: event.target.value
     })
   }
 
@@ -60,7 +61,7 @@ function Register() {
                           id="form3Example1c" 
                           className="form-control" 
                           placeholder="Email"
-                          onChage={handleChange}
+                          onChange={handleChange}
                            />
                         </div>
                       </div>
