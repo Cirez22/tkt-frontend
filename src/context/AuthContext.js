@@ -19,12 +19,11 @@ const AuthProvider = ({children}) => {
   
   const getAllUsers = async (user) => {
     // .env file missing -> add REACT_APP_API_URL
-    const response = await axios.get(apiUrl + '/auth');
+    const response = await axios.get(apiUrl + '/auth/');
     setUsers(response.data);
   }
 
   const loginUser = async (user) => {
-      console.log(user, 123);
     const response = await axios.post(apiUrl +  '/auth/login', user);
     const { data } = response;
     localStorage.setItem('jwtreservespot', JSON.stringify({user: data.user, token: data.token}));
@@ -35,7 +34,7 @@ const AuthProvider = ({children}) => {
 
   const signUpUser = async (user) => {
       try {
-        const response = await  apiHelper.post('/auth/signup', user);
+        const response = await  apiHelper.post(apiUrl  +'/auth/signup', user);
         const {data} = response;
         setUser(data.user);
         localStorage.setItem('jwtreservespot', JSON.stringify({user_role:data.user.role, token:data.token}));
@@ -70,7 +69,7 @@ const AuthProvider = ({children}) => {
         setUser,
         loginUser,
         logOutUser,
-        signUpUser
+        signUpUser,
       }}
     >
       {children}
